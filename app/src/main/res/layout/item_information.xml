@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <TextView
+        android:id="@+id/info_row_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1. पासपोर्ट बनाउन"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        />
+
+    <net.cachapa.expandablelayout.ExpandableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/info_row_expandable_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="आबस्यक कागजात: "
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/item_row_req_docs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="नागरिकताको प्रमाणपत्र"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="लाग्ने समय: "
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/item_row_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 घण्टा"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="लाग्ने शुल्क "
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/item_row_cost"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="रु. 2000"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="कोठा: "
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/item_row_ref_dept"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="कोठा ३०३ र ४०३"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="प्रवक्ता: "
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/item_row_ref_person"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="जगत बिक्रम श्रेष्ठ \n9846731777"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="गुनासो सुन्ने व्यक्ति: "
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/item_row_complaint_officer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="केन्द्र प्रसाद रेग्मी"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="अन्य विवरण: "
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/item_row_remarks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </net.cachapa.expandablelayout.ExpandableLayout>
+
+</LinearLayout>

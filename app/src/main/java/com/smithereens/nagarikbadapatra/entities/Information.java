@@ -12,7 +12,7 @@ public class Information {
     @SerializedName("description")
     String description;
     @SerializedName("reqDocList")
-    List<String> reqDocList;
+    String reqDocList;
     @SerializedName("time")
     Integer time;
     @SerializedName("timeUnit")
@@ -29,11 +29,16 @@ public class Information {
     String complaintOfficer;
     @SerializedName("remarks")
     String remarks;
+    @SerializedName("isActive")
+    boolean isActive;
+    @SerializedName("officeId")
+    int officeId;
+
 
     public Information() {
     }
 
-    public Information(int id, String code, String description, List<String> reqDocList, int time, String timeUnit, long cost, String referDepartment, String referPerson, String referPersonContact, String complaintOfficer, String remarks) {
+    public Information(int id, String code, String description, String reqDocList, int time, String timeUnit, long cost, String referDepartment, String referPerson, String referPersonContact, String complaintOfficer, String remarks, boolean isActive, int officeId) {
         this.id = id;
         this.code = code;
         this.description = description;
@@ -46,13 +51,15 @@ public class Information {
         this.referPersonContact = referPersonContact;
         this.complaintOfficer = complaintOfficer;
         this.remarks = remarks;
+        this.isActive = isActive;
+        this.officeId = officeId;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -72,19 +79,19 @@ public class Information {
         this.description = description;
     }
 
-    public List<String> getReqDocList() {
+    public String getReqDocList() {
         return reqDocList;
     }
 
-    public void setReqDocList(List<String> reqDocList) {
+    public void setReqDocList(String reqDocList) {
         this.reqDocList = reqDocList;
     }
 
-    public int getTime() {
+    public Integer getTime() {
         return time;
     }
 
-    public void setTime(int time) {
+    public void setTime(Integer time) {
         this.time = time;
     }
 
@@ -96,11 +103,11 @@ public class Information {
         this.timeUnit = timeUnit;
     }
 
-    public long getCost() {
+    public Long getCost() {
         return cost;
     }
 
-    public void setCost(long cost) {
+    public void setCost(Long cost) {
         this.cost = cost;
     }
 
@@ -142,5 +149,21 @@ public class Information {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public int getOfficeId() {
+        return officeId;
+    }
+
+    public void setOfficeId(int officeId) {
+        this.officeId = officeId;
     }
 }

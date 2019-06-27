@@ -1,16 +1,33 @@
 <resources>
-    <string name="app_name">Nagarik Badapatra</string>
+    <string name="app_name">नागरिक बड़ापत्र</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">बिकल्प ढकाल</string>
+    <string name="nav_header_subtitle">शुक्लागण्डकी, तनहु</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">सेटिंग्स</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
+    <string name="menu_home">गृह पृष्ठ</string>
+    <string name="menu_history">हिस्ट्री</string>
+    <string name="menu_camera">QR स्क्यान गर्नुहोस</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="menu_share">शेयर</string>
+    <string name="menu_send">सेण्ड</string>
+    <string name="menu_notice">नोटिस बोर्ड</string>
+
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="notice_dump">
+        २०७५/१२/१२   अर्घखाँची जिल्ला अदालत कर्मचारी आवश्यकता सम्बन्धी सुचना ।\n\n
+        २०७५/१२/१२	तनहुँ जिल्ला अदालतमा वैतनिक कानुन व्यवसायी नियुक्ती सम्बन्धी सूचना ।\n\n
+        २०७५/१२/१२	पर्सा जिल्ला अदालतमा सवारी साधन लिलाम विक्री सम्बन्धी सुचना ।\n\n
+        २०७५/१२/११	उच्च अदालत सुर्खेतमा कर्मचारी आवश्यकता सम्बन्धी सुचना ।\n\n
+        २०७५/१२/०७	ललितपुर जिल्ला अदालतमा दशीका जिन्शी सामान फिर्ता लिन आउने सम्बन्धी सुचना ।\n\n
+        ०७५/१२/०४	सिन्धुली जिल्ला अदालतमा वैतनिक कानुन व्यवसायी नियुक्ती सम्बन्धी सूचना ।\n\n
+        २०७५/१२/०३	जाजरकोट जिल्ला अदालतमा वैतनिक कानुन व्यवसायी नियुक्ती सम्बन्धी सूचना ।\n\n
+    </string>
 </resources>

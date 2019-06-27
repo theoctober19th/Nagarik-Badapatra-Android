@@ -1,10 +1,18 @@
 package com.smithereens.nagarikbadapatra;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.preference.PreferenceManager;
+import android.text.InputType;
 import android.view.View;
 
 import androidx.core.view.GravityCompat;
@@ -13,13 +21,24 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
+import com.jakewharton.processphoenix.ProcessPhoenix;
+import com.smithereens.nagarikbadapatra.api.RetrofitClientInstance;
+import com.smithereens.nagarikbadapatra.custom.TinyDB;
+import com.smithereens.nagarikbadapatra.fragments.HistoryFragment;
+import com.smithereens.nagarikbadapatra.fragments.HomeFragment;
+import com.smithereens.nagarikbadapatra.fragments.InformationFragment;
+import com.smithereens.nagarikbadapatra.fragments.NoticeFragment;
+import com.smithereens.nagarikbadapatra.qr.QRCodeActivity;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,12 +49,11 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.scanFab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                scanQRCode();
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -45,6 +63,31 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+        setFragmentFromExtras();
+    }
+
+    private void setFragmentFromExtras() {
+        Intent intent = getIntent();
+        if(intent.getExtras() != null && intent.getStringExtra("loadfragment")!=null){
+            String loadfragment = intent.getStringExtra("loadfragment");
+            switch (loadfragment){
+                case "information":
+                    String officeid = intent.getStringExtra("officeid");
+                    Bundle bundle = new Bundle();
+                    bundle.putString("officeid", officeid);
+                    InformationFragment myObj = new InformationFragment();
+                    myObj.setArguments(bundle);
+                    displaySelectedFragment(myObj);
+            }
+        }else{
+            displaySelectedFragment(new HomeFragment());
+        }
+    }
+
+    private void scanQRCode() {
+        Intent intent = new Intent(this, QRCodeActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -73,10 +116,42 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            setIPAddressForPi();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setIPAddressForPi() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("IP address of Server");
+
+// Set up the input
+        final EditText input = new EditText(this);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+        builder.setView(input);
+
+// Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String ipaddress = input.getText().toString();
+                if(!ipaddress.equals("")){
+                    PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit().putString("ipaddress", input.getText().toString()).apply();
+                    ProcessPhoenix.triggerRebirth(MainActivity.this);
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -86,14 +161,14 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
+            displaySelectedFragment(new HomeFragment());
+        } else if (id == R.id.nav_history) {
+            displaySelectedFragment(new HistoryFragment());
+        } else if (id == R.id.nav_qr) {
+            scanQRCode();
+        }   else if (id == R.id.nav_notice) {
+            displaySelectedFragment(new NoticeFragment());
+        }else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
@@ -102,5 +177,12 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    public void displaySelectedFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.frame_container, fragment);
+        fragmentTransaction.commit();
     }
 }

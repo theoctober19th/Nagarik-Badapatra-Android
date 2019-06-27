@@ -1,30 +1,44 @@
 package com.smithereens.nagarikbadapatra.api;
 
+import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Log;
+
+import com.smithereens.nagarikbadapatra.MyApplication;
+import com.smithereens.nagarikbadapatra.R;
+import com.smithereens.nagarikbadapatra.custom.TinyDB;
+import com.smithereens.nagarikbadapatra.custom.UnsafeOkHttpClient;
+
+import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClientInstance {
 
-    private static Retrofit retrofit;
-    private static String IP_ADDRESS = "10.5.50.158";
-    private static String PORT_NUMBER = "8000";
-    private static String ROOT_DIRECTORY = "nagarikbadapatra";
 
-    public static Retrofit getRetrofitInstance() {
+    private static Retrofit retrofit;
+   // public static String IP_ADDRESS = "192.168.1.100";
+    private static String PORT_NUMBER = "8080";
+    private static String ROOT_DIRECTORY = "badapatra";
+    private static Context mContext;
+
+    public static Retrofit getRetrofitInstance(String ipaddress) {
+        OkHttpClient okHttpClient = UnsafeOkHttpClient.getUnsafeOkHttpClient();
         if (retrofit == null) {
             retrofit = new retrofit2.Retrofit.Builder()
-                    .baseUrl(getBaseUrl())
+                    .baseUrl(getBaseUrl(ipaddress))
+                    .client(okHttpClient)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
         return retrofit;
     }
 
-    public static void setIpAddress(String ipaddress){
-        IP_ADDRESS = ipaddress;
-    }
 
-    public static String getBaseUrl(){
-        return "https://" + IP_ADDRESS + ":" + PORT_NUMBER + "/" + ROOT_DIRECTORY + "/";
+    public static String getBaseUrl(String ipaddress){
+        String s =  "http://" + ipaddress + ":" + PORT_NUMBER + "/" + ROOT_DIRECTORY + "/";
+        Log.d("MYAPI", s);
+        return s;
     }
 }
