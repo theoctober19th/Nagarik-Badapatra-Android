@@ -14,4 +14,4 @@ The governmental offices that uses this technology will use the backend panel to
 
 The users who use the android application can search for the offices nearby their location, and also navigate to that place using the map. The users can view all the information of the office from any place around the world. Also, when a user is physically at the office location, he/she can scan the QR code provided by the office to access the information about that particular office instantly.
 
-The project won Second Prize in the hackathon. It was conceived initially for this hackathon, and is now currently under developement.
+The project won Second Prize in the hackathon. It was conceived initially for this hackathon, and is not actively under development. You can contribute to the project if you want to take it further.
